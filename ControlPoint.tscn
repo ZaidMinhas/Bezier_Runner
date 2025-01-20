@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://yji2auv8pgm3"]
+
+[ext_resource type="Script" path="res://control_point.gd" id="1_1cxmc"]
+
+[sub_resource type="Gradient" id="Gradient_0y7e7"]
+interpolation_mode = 1
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3gd0w"]
+gradient = SubResource("Gradient_0y7e7")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jjs60"]
+radius = 7.07107
+
+[node name="ControlPoint" type="Node2D"]
+script = ExtResource("1_1cxmc")
+speed = 1000.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_3gd0w")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_jjs60")

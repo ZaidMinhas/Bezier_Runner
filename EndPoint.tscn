@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1fskbaeplbpr"]
+
+[ext_resource type="Script" path="res://end_point.gd" id="1_2emkr"]
+[ext_resource type="Texture2D" uid="uid://capqbn18kcah5" path="res://Sprite-0001.png" id="1_6xbbr"]
+
+[node name="EndPoint" type="Node2D"]
+script = ExtResource("1_2emkr")
+speed = 650.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6xbbr")

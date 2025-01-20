@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://bbitdepugub1x"]
+
+[ext_resource type="Texture2D" uid="uid://naxdmpaxtfpm" path="res://Enemy.png" id="1_xjr2u"]
+[ext_resource type="Script" path="res://GunEnemy.gd" id="2_60l1a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ndbk"]
+atlas = ExtResource("1_xjr2u")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ieg8"]
+atlas = ExtResource("1_xjr2u")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwl18"]
+atlas = ExtResource("1_xjr2u")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdgbj"]
+atlas = ExtResource("1_xjr2u")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6qhm"]
+atlas = ExtResource("1_xjr2u")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0u3a"]
+atlas = ExtResource("1_xjr2u")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l52uh"]
+atlas = ExtResource("1_xjr2u")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3v5tj"]
+animations = [{
+"frames": [{
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_6ndbk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ieg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwl18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdgbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6qhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0u3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l52uh")
+}],
+"loop": false,
+"name": &"ShootingPosition",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4t8k1"]
+radius = 14.0
+height = 50.0
+
+[node name="GunEnemy" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_3v5tj")
+animation = &"ShootingPosition"
+speed_scale = 2.0
+script = ExtResource("2_60l1a")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 9)
+shape = SubResource("CapsuleShape2D_4t8k1")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
