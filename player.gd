@@ -18,6 +18,7 @@ var points
 
 func _ready() -> void:
 	pauseGravity()
+	$CollisionPolygon2D/AnimatedSprite2d.play("idle")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -105,15 +106,15 @@ func PathFollow(delta):
 	path_follow_2d.progress += delta*1000*1.5
 	move_and_collide(path_follow_2d.position-position)
 	#rotation = path_follow_2d.rotation
-	rotate(delta*10)
-		
-	
+	rotate(delta*30)
+	$CollisionPolygon2D/AnimatedSprite2d.play("attack")
 
 func resumeGravity():
 	#pass
 	gravity_scale = 0.2
 	var collision:CollisionPolygon2D =  get_child(0)
 	collision.disabled = false
+	$CollisionPolygon2D/AnimatedSprite2d.play("idle")
 	
 func pauseGravity():
 	

@@ -1,15 +1,47 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpup57umnwk12"]
+[gd_scene load_steps=7 format=3 uid="uid://cpup57umnwk12"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_8b5u5"]
-[ext_resource type="Texture2D" uid="uid://cv3m0m6tao088" path="res://Sword.png" id="1_pi7t7"]
+[ext_resource type="Texture2D" uid="uid://bwp0o8q2lg2xa" path="res://images/player_idle.png" id="2_4qeuh"]
+[ext_resource type="Texture2D" uid="uid://c41bbbv1u3jw5" path="res://images/player_attack.png" id="2_5v8en"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxpuo"]
+atlas = ExtResource("2_5v8en")
+region = Rect2(0, 0, 141, 143)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hd7j"]
+atlas = ExtResource("2_4qeuh")
+region = Rect2(0, 0, 48, 141)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6fgp4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxpuo")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hd7j")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
 
 [node name="Player" type="RigidBody2D"]
 gravity_scale = 0.2
 script = ExtResource("1_8b5u5")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(-21, 1)
-polygon = PackedVector2Array(-32, -10, 60, -10, 60, 9, -32, 9)
+scale = Vector2(1, 1.2)
+polygon = PackedVector2Array(-32, -8.33333, 63, -8.33333, 69, 0, 63, 8.33333, -32, 8.33333)
 
-[node name="Sprite2D" type="Sprite2D" parent="CollisionPolygon2D"]
-texture = ExtResource("1_pi7t7")
+[node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="CollisionPolygon2D"]
+rotation = -1.5708
+scale = Vector2(0.833333, 1)
+sprite_frames = SubResource("SpriteFrames_6fgp4")
+animation = &"idle"
+autoplay = "idle"
